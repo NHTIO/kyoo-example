@@ -11,6 +11,7 @@ process
         console.error(reason, "Unhandled Rejection at Promise", p);
     })
     .on("uncaughtException", (err) => {
+        console.error(err.message);
         console.error(err.stack);
         cleanup().finally(() => process.exit(1));
     })
@@ -29,12 +30,13 @@ const getConfiguration = () => {
             return {
                 client: "bullmq",
                 configuration: {
-                    connection: {
+                    options: {
                         host: process.env.REDIS_HOST,
-                        port: process.env.REDIS_PORT,
-                        password: process.env.REDIS_PASSWORD,
-                        db: process.env.REDIS_DB,
-                        tls: process.env.REDIS_TLS ? { rejectUnauthorized: false } : undefined,
+                        port: process.env.REDIS_PORT || 6379,
+                        password: process.env.REDIS_PASSWORD || undefined,
+                        db: process.env.REDIS_DB || 0,
+                        tls: process.env.REDIS_TLS === 'true' ? { rejectUnauthorized: false } : undefined,
+                        maxRetriesPerRequest: null,
                     }
                 }
             }
@@ -80,3 +82,4 @@ const getConfiguration = () => {
 }
 
 export const configuration = getConfiguration();
+export const abort = () => abortController.abort();

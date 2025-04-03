@@ -9,7 +9,7 @@
   "author": "Jak Giveon <jak@nht.io>",
   "license": "MIT",
   "dependencies": {
-    "@nhtio/kyoo": "^1.20250403.0",
+    "@nhtio/kyoo": "^1.20250403.2",
     "dotenv": "^16.4.7"
   }
 }
