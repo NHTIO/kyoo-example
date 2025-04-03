@@ -4,7 +4,7 @@ This repository shows an example of using Kyoo
 
 ## How to run
 
-To run this project, you can simply run:
+To run this project, first create and populate a `.env` file. Then you can simply run:
 
 ```shell
 node index.mjs
